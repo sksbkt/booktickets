@@ -13,6 +13,7 @@ class AppThemes {
 
   static const Color backgroundColor = Color(0xffeeedf2);
   static const Color textFieldBgColor = Color(0xfff4f6fd);
+  static const Color orangeColor = Color(0xfff37b67);
 
   static const Color shadowColor = Color(0xff989898);
 
