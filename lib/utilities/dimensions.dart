@@ -6,6 +6,7 @@ class Dimensions {
   static double screenWidth = MediaQuery.of(navigatorKey.currentContext!).size.width;
 
   static double radius5 = _heightRatio(5);
+  static double radius12 = _heightRatio(12);
   static double radius15 = _heightRatio(15);
   static double radius21 = _heightRatio(21);
 

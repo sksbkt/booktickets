@@ -1,6 +1,8 @@
 import 'package:booktickets/theme/app_themes.dart';
 import 'package:booktickets/utilities/app_constants.dart';
+import 'package:booktickets/utilities/data/app_info_list.dart';
 import 'package:booktickets/utilities/dimensions.dart';
+import 'package:booktickets/widgets/hotel_screen_widget.dart';
 
 import 'package:booktickets/widgets/text_widget.dart';
 import 'package:booktickets/widgets/ticket_view_widget.dart';
@@ -16,7 +18,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppThemes.backgroundColor,
-      body: ListView(children: [
+      body: ListView(physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()), children: [
         Container(
             padding: EdgeInsets.symmetric(horizontal: Dimensions.width15),
             child: Column(
@@ -86,8 +88,47 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 Gap(Dimensions.height15),
-                TicketView()
               ],
+            )),
+        SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: Dimensions.width15),
+          physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              TicketView(),
+              TicketView(),
+            ],
+          ),
+        ),
+        Gap(Dimensions.height15),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: Dimensions.width15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextWidget(
+                text: AppConstats.HOTELS_TEXT,
+                textStyle: AppThemes.headLineStyle2,
+              ),
+              InkWell(
+                onTap: () {},
+                child: TextWidget(
+                  text: AppConstats.VIEW_ALL_TEXT,
+                  //we are using the previously declared style but changing it a bit inline
+                  textStyle: AppThemes.headLineStyle4.copyWith(color: AppThemes.mainAppColor),
+                ),
+              )
+            ],
+          ),
+        ),
+        Gap(5),
+        SingleChildScrollView(
+            physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            padding: const EdgeInsets.only(left: 20),
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: hotelList.map((hotel) => HotelScreen(hotel: hotel)).toList(),
             )),
       ]),
     );

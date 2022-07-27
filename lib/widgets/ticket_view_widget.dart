@@ -13,7 +13,7 @@ class TicketView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: Dimensions.screenWidth,
+        width: Dimensions.screenWidth * .85,
         child: Container(
           margin: EdgeInsets.only(left: Dimensions.width5 * 2),
           child: ClipPath(
@@ -204,26 +204,28 @@ class TicketView extends StatelessWidget {
                 ],
               ),
               //Cutting dots
-              SizedBox(
-                height: 30,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-                        return Flex(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          direction: Axis.horizontal,
-                          children: List.generate(
-                              (constraints.constrainWidth() / 10).floor(),
-                              (index) => SizedBox(
-                                    width: 5,
-                                    height: 2,
-                                    child: DecoratedBox(decoration: BoxDecoration(color: Colors.white)),
-                                  )),
-                        );
-                      }),
-                    )
-                  ],
+              Container(
+                child: SizedBox(
+                  height: 30,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+                          return Flex(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            direction: Axis.horizontal,
+                            children: List.generate(
+                                (constraints.constrainWidth() / 10).floor(),
+                                (index) => SizedBox(
+                                      width: 5,
+                                      height: 2,
+                                      child: DecoratedBox(decoration: BoxDecoration(color: Colors.white)),
+                                    )),
+                          );
+                        }),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ]),
