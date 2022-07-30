@@ -10,11 +10,11 @@ class HotelScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height10),
       child: Container(
         width: Dimensions.screenWidth * .5,
         height: 350,
-        padding: EdgeInsets.symmetric(horizontal: 13, vertical: 15),
+        padding: EdgeInsets.symmetric(horizontal: Dimensions.getWidthRatio(13), vertical: Dimensions.height15),
         decoration: BoxDecoration(
             color: AppThemes.mainAppColor,
             borderRadius: BorderRadius.circular(Dimensions.radius12 * 2),
@@ -45,7 +45,7 @@ class HotelScreen extends StatelessWidget {
             Text(
               '\$${hotel['price']} /night',
               textAlign: TextAlign.start,
-              style: AppThemes.headLineStyle1.copyWith(color: AppThemes.kakiColor, fontSize: 23),
+              style: AppThemes.headLineStyle1.copyWith(color: AppThemes.kakiColor, fontSize: Dimensions.fontSize24),
             ),
           ],
         ),

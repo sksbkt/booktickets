@@ -1,12 +1,16 @@
 class AppConstats {
-  static String GREETING_TEXT = 'Good morning';
-  static String BOOK_TICKETS_TEXT = 'Book tickets';
-  static String UPCOMING_FLIGHTS_TEXT = 'Upcoming flights';
-  static String HOTELS_TEXT = 'Hotels';
-  static String VIEW_ALL_TEXT = 'View all';
-  static String DATE_TEXT = 'Date';
-  static String DEPARTURE_TEXT = 'Departure';
-  static String NUMBER_TEXT = 'Number';
+  static const String GREETING_TEXT = 'Good morning';
+  static const String BOOK_TICKETS_TEXT = 'Book tickets';
+  static const String UPCOMING_FLIGHTS_TEXT = 'Upcoming flights';
+  static const String HOTELS_TEXT = 'Hotels';
+  static const String VIEW_ALL_TEXT = 'View all';
+  static const String DATE_TEXT = 'Date';
+  static const String DEPARTURE_TEXT = 'Departure';
+  static const String ARRIVAL_TEXT = 'Arrival';
+  static const String FIND_TICKETS_TEXT = 'Find tickets';
+  static const String NUMBER_TEXT = 'Number';
+  static const String WHAT_ARE_YOU_LOOKING_FOR_TEXT = 'What are you looking for?';
+  static const String AIRLINE_TICKETS_TEXT = 'Airline tickets';
 
-  static String SEARCH_HINT_TEXT = 'Search';
+  static const String SEARCH_HINT_TEXT = 'Search';
 }

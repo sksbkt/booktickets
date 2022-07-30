@@ -2,6 +2,7 @@ import 'package:booktickets/theme/app_themes.dart';
 import 'package:booktickets/utilities/app_constants.dart';
 import 'package:booktickets/utilities/data/app_info_list.dart';
 import 'package:booktickets/utilities/dimensions.dart';
+import 'package:booktickets/widgets/head_link_widget.dart';
 import 'package:booktickets/widgets/hotel_screen_widget.dart';
 
 import 'package:booktickets/widgets/text_widget.dart';
@@ -70,23 +71,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Gap(Dimensions.height10 * 3),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextWidget(
-                      text: AppConstats.UPCOMING_FLIGHTS_TEXT,
-                      textStyle: AppThemes.headLineStyle2,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: TextWidget(
-                        text: AppConstats.VIEW_ALL_TEXT,
-                        //we are using the previously declared style but changing it a bit inline
-                        textStyle: AppThemes.headLineStyle4.copyWith(color: AppThemes.mainAppColor),
-                      ),
-                    )
-                  ],
-                ),
+                HeadLinkWidget(text: AppConstats.UPCOMING_FLIGHTS_TEXT),
                 Gap(Dimensions.height15),
               ],
             )),
@@ -95,31 +80,14 @@ class HomeScreen extends StatelessWidget {
           physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: [
-              TicketView(),
-              TicketView(),
-            ],
+            children: ticketList.map((ticket) => TicketView(ticket: ticket)).toList(),
           ),
         ),
         Gap(Dimensions.height15),
         Container(
           margin: EdgeInsets.symmetric(horizontal: Dimensions.width15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextWidget(
-                text: AppConstats.HOTELS_TEXT,
-                textStyle: AppThemes.headLineStyle2,
-              ),
-              InkWell(
-                onTap: () {},
-                child: TextWidget(
-                  text: AppConstats.VIEW_ALL_TEXT,
-                  //we are using the previously declared style but changing it a bit inline
-                  textStyle: AppThemes.headLineStyle4.copyWith(color: AppThemes.mainAppColor),
-                ),
-              )
-            ],
+          child: HeadLinkWidget(
+            text: AppConstats.HOTELS_TEXT,
           ),
         ),
         Gap(5),

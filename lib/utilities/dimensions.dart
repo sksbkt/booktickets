@@ -13,7 +13,6 @@ class Dimensions {
   static double fontSize20 = _heightRatio(20);
   static double fontSize24 = _heightRatio(24);
 
-  static double width3 = _widthRatio(3);
   static double width5 = _widthRatio(5);
   static double width10 = _widthRatio(10);
   static double width15 = _widthRatio(15);
@@ -31,4 +30,9 @@ class Dimensions {
 
   static double _heightRatio(double input) => screenHeight / (screenHeight / input);
   static double _widthRatio(double input) => screenWidth / (screenWidth / input);
+
+  static double getHeightRatio(double input) => _heightRatio(input);
+  static double getWidthRatio(double input) => _widthRatio(input);
+  static double getFontRatio(double input) => _heightRatio(input);
+  static double getBorderRatio(double input) => _heightRatio(input);
 }
