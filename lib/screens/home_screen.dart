@@ -5,7 +5,6 @@ import 'package:booktickets/utilities/dimensions.dart';
 import 'package:booktickets/widgets/head_link_widget.dart';
 import 'package:booktickets/widgets/hotel_screen_widget.dart';
 
-import 'package:booktickets/widgets/text_widget.dart';
 import 'package:booktickets/widgets/ticket_view_widget.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,14 +30,14 @@ class HomeScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextWidget(
-                          text: AppConstats.GREETING_TEXT,
-                          textStyle: AppThemes.headLineStyle3,
+                        Text(
+                          AppConstats.GREETING_TEXT,
+                          style: AppThemes.headLineStyle3,
                         ),
                         const Gap(5),
-                        TextWidget(
-                          text: AppConstats.BOOK_TICKETS_TEXT,
-                          textStyle: AppThemes.headLineStyle1,
+                        Text(
+                          AppConstats.BOOK_TICKETS_TEXT,
+                          style: AppThemes.headLineStyle1,
                         )
                       ],
                     ),
@@ -63,9 +62,9 @@ class HomeScreen extends StatelessWidget {
                         FluentSystemIcons.ic_fluent_search_regular,
                         color: AppThemes.iconColor1,
                       ),
-                      TextWidget(
-                        text: AppConstats.SEARCH_HINT_TEXT,
-                        textStyle: AppThemes.headLineStyle4,
+                      Text(
+                        AppConstats.SEARCH_HINT_TEXT,
+                        style: AppThemes.headLineStyle4,
                       )
                     ],
                   ),
@@ -80,7 +79,11 @@ class HomeScreen extends StatelessWidget {
           physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: ticketList.map((ticket) => TicketView(ticket: ticket)).toList(),
+            children: ticketList
+                .map((ticket) => TicketView(
+                      ticket: ticket,
+                    ))
+                .toList(),
           ),
         ),
         Gap(Dimensions.height15),

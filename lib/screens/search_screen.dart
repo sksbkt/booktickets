@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../widgets/icon_text_widget.dart';
+import '../widgets/ticket_tabs_widget.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -29,49 +30,9 @@ class SearchScreen extends StatelessWidget {
             ),
             Gap(Dimensions.getHeightRatio(20)),
             //airlines and hotels
-            Container(
-              padding: EdgeInsets.all(Dimensions.getWidthRatio(3.5)),
-              decoration: BoxDecoration(
-                  color: AppThemes.SearchBGColor, borderRadius: BorderRadius.circular(Dimensions.getBorderRatio(52))),
-              height: 40,
-              child: Row(
-                children: [
-                  //airline tickets
-                  Container(
-                    child: Center(
-                      child: Text(
-                        AppConstats.AIRLINE_TICKETS_TEXT,
-                        style: AppThemes.headLineStyle1.copyWith(fontSize: 16),
-                      ),
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: Dimensions.getHeightRatio(7)),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.horizontal(
-                            left: Radius.circular(
-                          Dimensions.getBorderRatio(50),
-                        ))),
-                    width: Dimensions.screenWidth * .44,
-                  ),
-                  //hotels
-                  Container(
-                    child: Center(
-                      child: Text(
-                        AppConstats.HOTELS_TEXT,
-                        style: AppThemes.headLineStyle1.copyWith(fontSize: 16),
-                      ),
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: Dimensions.getHeightRatio(7)),
-                    decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.horizontal(
-                            right: Radius.circular(
-                          Dimensions.getBorderRatio(50),
-                        ))),
-                    width: Dimensions.screenWidth * .44,
-                  ),
-                ],
-              ),
+            TicketTabs(
+              tab1Text: AppConstats.AIRLINE_TICKETS_TEXT,
+              tab2Text: AppConstats.HOTELS_TEXT,
             ),
             Gap(Dimensions.getHeightRatio(25)),
             const IconTextWidget(
@@ -138,7 +99,7 @@ class SearchScreen extends StatelessWidget {
                           Container(
                             // alignment: Alignment.topCenter,
                             width: Dimensions.screenWidth * .44,
-                            height: Dimensions.getHeightRatio(174),
+                            height: Dimensions.getHeightRatio(175),
                             decoration: BoxDecoration(
                               gradient: RadialGradient(
                                   center: FractionalOffset(.2, .8),
@@ -197,8 +158,44 @@ class SearchScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    ///TODO: still work in progess
+                    Gap(Dimensions.height10),
+                    Container(
+                      padding: EdgeInsets.all(Dimensions.width15),
+                      // alignment: Alignment.topCenter,
+                      width: Dimensions.screenWidth * .44,
+                      height: Dimensions.getHeightRatio(215),
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: FractionalOffset(1, 0),
+                              end: FractionalOffset(.2, .8),
+                              colors: [AppThemes.bgShapeColor2.withOpacity(.7), AppThemes.bgShapeColor2]),
+                          borderRadius: BorderRadius.circular(Dimensions.getBorderRatio(18))),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Take love',
+                            style: AppThemes.headLineStyle2.copyWith(color: Colors.white),
+                          ),
+                          Gap(Dimensions.height5),
+                          RichText(
+                              text: TextSpan(children: [
+                            TextSpan(
+                              text: '🥰',
+                              style: TextStyle(fontSize: Dimensions.getFontRatio(32)),
+                            ),
+                            TextSpan(
+                              text: '😎',
+                              style: TextStyle(fontSize: Dimensions.getFontRatio(40)),
+                            ),
+                            TextSpan(
+                              text: '😏',
+                              style: TextStyle(fontSize: Dimensions.getFontRatio(32)),
+                            ),
+                          ])),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ],

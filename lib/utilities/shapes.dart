@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:path_drawing/path_drawing.dart';
 
 class RPSCustomPainter extends CustomPainter {
   final Color color;
@@ -39,6 +41,29 @@ class RPSCustomPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
+
+class TicketViewBorderPainter extends CustomPainter {
+  final Color color;
+  TicketViewBorderPainter({this.color = Colors.black});
+  @override
+  void paint(Canvas canvas, Size size) {
+    var path = parseSvgPathData(
+        'M359,81.4a10.5,10.5,0,0,0,10.5,10.5v47.6a21.06,21.06,0,0,1-21,21H21.5a21.06,21.06,0,0,1-21-21V91.9a10.5,10.5,0,0,0,0-21V21.5a21.06,21.06,0,0,1,21-21h327a21.06,21.06,0,0,1,21,21V70.9A10.5,10.5,0,0,0,359,81.4Z');
+    canvas.drawPath(
+      path,
+      Paint()
+        ..color = color
+        ..style = PaintingStyle.fill,
+    );
+    // TODO: implement paint
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    // TODO: implement shouldRepaint
     return true;
   }
 }
