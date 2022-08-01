@@ -23,7 +23,9 @@ class TicketView extends StatelessWidget {
           child: Stack(children: [
             ClipPath(
               // clipBehavior: Clip.antiAlias,
-              clipper: CircularClips(),
+              ///WIP
+              clipper: isColored ? CircularClips() : LargeCircularClips(),
+
               child: Stack(alignment: Alignment.center, children: [
                 Column(
                   children: [
@@ -262,69 +264,19 @@ class TicketView extends StatelessWidget {
                 ),
               ]),
             ),
-
-            ///TODO: looking for a more responsive approach for this part
-            ///currently there is an issue with the sizing of the SVG import
-            SizedBox(
-                width: Dimensions.screenWidth * .85,
-                height: 160,
-                child: CustomPaint(painter: TicketViewBorderPainter(color: Colors.black.withOpacity(.7)))),
+            !isColored
+                ?
+                // SizedBox(
+                //         width: Dimensions.screenWidth * .85,
+                //         height: 160,
+                //         child: CustomPaint(painter: TicketViewBorderPainter(color: Colors.black.withOpacity(.3))))
+                //     :
+                SizedBox(
+                    width: Dimensions.screenWidth * .85,
+                    height: 160,
+                    child: CustomPaint(painter: LargeTicketViewBorderPainter(color: Colors.black.withOpacity(.3))))
+                : Container(),
           ]),
         ));
-  }
-}
-
-class CircularClips extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final Path path = Path();
-    double circleSize = Dimensions.radius5 * 5;
-
-    path.lineTo(0.0, size.height / 2 - circleSize / 2);
-    path.relativeArcToPoint(Offset(0, circleSize), radius: Radius.circular(Dimensions.radius5 * 2));
-    path.lineTo(0.0, size.height);
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, size.height / 2 + circleSize / 2);
-    path.arcToPoint(Offset(size.width, size.height / 2 - circleSize / 2), radius: Radius.circular(10));
-    path.lineTo(size.width, 0);
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
-  }
-}
-
-class BorderPainter extends CustomPainter {
-  final Color borderColor;
-
-  final double borderWidth;
-
-  BorderPainter({required this.borderColor, required this.borderWidth});
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = borderColor
-      ..strokeCap = StrokeCap.round
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = borderWidth;
-    final Path path = Path();
-    double circleSize = Dimensions.radius5 * 5;
-    path.lineTo(0.0, size.height / 2 - circleSize / 2);
-    path.relativeArcToPoint(Offset(0, circleSize), radius: Radius.circular(Dimensions.radius5 * 2));
-    path.lineTo(0.0, size.height);
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, size.height / 2 + circleSize / 2);
-    path.arcToPoint(Offset(size.width, size.height / 2 - circleSize / 2), radius: Radius.circular(10));
-    path.lineTo(size.width, 0);
-    path.close();
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
-    return true;
   }
 }
