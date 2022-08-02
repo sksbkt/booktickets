@@ -37,8 +37,7 @@ class AppThemes {
       TextStyle(fontSize: Dimensions.getFontRatio(26), color: textColor, fontWeight: FontWeight.bold);
   static TextStyle headLineStyle2 =
       TextStyle(fontSize: Dimensions.getFontRatio(21), color: Colors.grey.shade500, fontWeight: FontWeight.w500);
-  static TextStyle headLineStyle3 =
-      TextStyle(fontSize: Dimensions.getFontRatio(17), color: Colors.grey.shade500, fontWeight: FontWeight.w500);
+  static TextStyle headLineStyle3 = TextStyle(fontSize: Dimensions.getFontRatio(17), fontWeight: FontWeight.w500);
   static TextStyle headLineStyle4 =
       TextStyle(fontSize: Dimensions.getFontRatio(14), color: Colors.grey.shade500, fontWeight: FontWeight.w500);
 }

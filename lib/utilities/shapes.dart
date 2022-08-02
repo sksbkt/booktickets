@@ -8,14 +8,14 @@ Path ticketFormPath(double circleHeight, double height, double width) {
   double circleSize = Dimensions.radius5 * 5;
 
   path.moveTo(0, circleSize);
-  path.lineTo(0.0, circleHeight == 0 ? height / 2 - circleSize / 2 : circleHeight / 2 - circleSize / 2);
+  path.lineTo(0.0, circleHeight == 0 ? height / 2 - circleSize / 2 : circleHeight - circleSize / 2);
   path.relativeArcToPoint(Offset(0, circleSize), radius: Radius.circular(Dimensions.radius5 * 2));
   path.lineTo(0.0, height - circleSize);
   path.relativeQuadraticBezierTo(0, circleSize, circleSize, circleSize);
   path.lineTo(width - circleSize, height);
   path.relativeQuadraticBezierTo(circleSize, 0, circleSize, -circleSize);
 
-  path.lineTo(width, circleHeight == 0 ? height / 2 + circleSize / 2 : circleHeight / 2 + circleSize / 2);
+  path.lineTo(width, circleHeight == 0 ? height / 2 + circleSize / 2 : circleHeight + circleSize / 2);
   path.relativeArcToPoint(Offset(0, -circleSize), radius: Radius.circular(10));
   // path.arcToPoint(Offset(width, height / 2 - circleSize / 2), radius: Radius.circular(10));
   path.lineTo(width, circleSize);
@@ -70,7 +70,7 @@ class LargeCircularClips extends CustomClipper<Path> {
   Path getClip(Size size) {
     if (height == 0) height = size.height;
     if (width == 0) width = size.width;
-
+    print('width: ' + width.toString());
     // final Path path = Path();
     // double circleSize = Dimensions.radius5 * 5;
     //
@@ -189,6 +189,7 @@ class LargeTicketViewBorderPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     if (height == 0) height = size.height;
     if (width == 0) width = size.width;
+    print('width: ' + width.toString());
 
     ///We are resizing our path boundaries with the size
     // var path = parseSvgPathData(
@@ -200,7 +201,8 @@ class LargeTicketViewBorderPainter extends CustomPainter {
         ticketFormPath(circleHeight, height, width),
         Paint()
           ..color = color
-          ..style = PaintingStyle.fill);
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = strokeWidth);
   }
 
   @override

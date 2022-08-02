@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import 'column_layout.dart';
+
 class TicketView extends StatelessWidget {
   final Map<String, dynamic> ticket;
   final bool isColored;
@@ -15,18 +17,23 @@ class TicketView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(Dimensions.screenWidth * .85);
+    // print(Dimensions.screenWidth * .85);
     return SizedBox(
-        width: 360,
+        width: Dimensions.getWidthRatio(350),
         child: Container(
-          margin: EdgeInsets.only(left: Dimensions.width5 * 2),
+          margin: isColored ? EdgeInsets.only(left: Dimensions.width5 * 2) : EdgeInsets.zero,
           child: Stack(children: [
             ClipPath(
-              // clipBehavior: Clip.antiAlias,
-              ///WIP
-              clipper: isColored ? CircularClips() : LargeCircularClips(),
+              clipBehavior: Clip.antiAlias,
 
-              child: Stack(alignment: Alignment.center, children: [
+              ///WIP
+              clipper: isColored
+                  ? CircularClips(
+                      circleHeight: Dimensions.height10 * 8,
+                    )
+                  : LargeCircularClips(height: 500, circleHeight: Dimensions.height10 * 8),
+
+              child: Stack(children: [
                 Column(
                   children: [
                     //blue part of ticket
@@ -168,61 +175,21 @@ class TicketView extends StatelessWidget {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      SizedBox(
-                                        width: Dimensions.width50 * 2,
-                                        child: Text(
-                                          ticket['date'],
-                                          style: isColored
-                                              ? AppThemes.headLineStyle3.copyWith(color: Colors.white)
-                                              : AppThemes.headLineStyle3,
-                                        ),
+                                      AppColumnLayout(
+                                        firstText: ticket['date'],
+                                        SecondText: AppConstats.DATE_TEXT,
+                                        isColored: isColored,
                                       ),
-                                      Text(
-                                        ticket['departure_time'],
-                                        style: isColored
-                                            ? AppThemes.headLineStyle3.copyWith(color: Colors.white)
-                                            : AppThemes.headLineStyle3,
+                                      AppColumnLayout(
+                                        firstText: ticket['flying_time'],
+                                        SecondText: AppConstats.DEPARTURE_TEXT,
+                                        isColored: isColored,
                                       ),
-                                      SizedBox(
-                                        width: Dimensions.width50 * 2,
-                                        child: Text(
-                                          ticket['number'].toString(),
-                                          textAlign: TextAlign.end,
-                                          style: isColored
-                                              ? AppThemes.headLineStyle3.copyWith(color: Colors.white)
-                                              : AppThemes.headLineStyle3,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Gap(Dimensions.height10),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        width: Dimensions.width50 * 2,
-                                        child: Text(
-                                          AppConstats.DATE_TEXT,
-                                          style: isColored
-                                              ? AppThemes.headLineStyle4.copyWith(color: Colors.white)
-                                              : AppThemes.headLineStyle4,
-                                        ),
-                                      ),
-                                      Text(
-                                        AppConstats.DEPARTURE_TEXT,
-                                        style: isColored
-                                            ? AppThemes.headLineStyle4.copyWith(color: Colors.white)
-                                            : AppThemes.headLineStyle4,
-                                      ),
-                                      SizedBox(
-                                        width: Dimensions.width50 * 2,
-                                        child: Text(
-                                          AppConstats.NUMBER_TEXT,
-                                          textAlign: TextAlign.end,
-                                          style: isColored
-                                              ? AppThemes.headLineStyle4.copyWith(color: Colors.white)
-                                              : AppThemes.headLineStyle4,
-                                        ),
+                                      AppColumnLayout(
+                                        firstText: ticket['number'].toString(),
+                                        SecondText: AppConstats.NUMBER_TEXT,
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        isColored: isColored,
                                       ),
                                     ],
                                   ),
@@ -233,35 +200,60 @@ class TicketView extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Container(
+                      color: Colors.white,
+                      padding: EdgeInsets.all(Dimensions.width15),
+                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                        AppColumnLayout(
+                          firstText: 'Flutter DB',
+                          SecondText: 'Passenger',
+                          isColored: isColored,
+                        ),
+                        AppColumnLayout(
+                          firstText: '5221 478566',
+                          SecondText: 'Passport',
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          isColored: isColored,
+                        ),
+                      ]),
+                    )
                   ],
                 ),
                 //Cutting dots
-                Container(
-                  child: SizedBox(
-                    height: Dimensions.height10 * 3,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-                            return Flex(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              direction: Axis.horizontal,
-                              children: List.generate(
-                                  (constraints.constrainWidth() / 10).floor(),
-                                  (index) => SizedBox(
-                                        width: Dimensions.width5,
-                                        height: Dimensions.height1 * 2,
-                                        child: DecoratedBox(
-                                            decoration: BoxDecoration(
-                                                color: isColored ? Colors.white : AppThemes.objectBlueColor)),
-                                      )),
-                            );
-                          }),
-                        )
-                      ],
-                    ),
+                Positioned(
+                  width: Dimensions.getWidthRatio(350),
+                  top: Dimensions.height10 * 8 - (Dimensions.height1 * 2) / 2,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+                          return Flex(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            direction: Axis.horizontal,
+                            children: List.generate(
+                                (constraints.constrainWidth() / 10).floor(),
+                                (index) => SizedBox(
+                                      width: Dimensions.width5,
+                                      height: Dimensions.height1 * 2,
+                                      child: DecoratedBox(
+                                          decoration: BoxDecoration(
+                                              color: isColored ? Colors.white : AppThemes.objectBlueColor)),
+                                    )),
+                          );
+                        }),
+                      )
+                    ],
                   ),
                 ),
+                Positioned(
+                    width: Dimensions.getWidthRatio(350),
+                    top: (Dimensions.height10 * 8 - (Dimensions.height1 * 2) / 2) * 2,
+                    child: Divider(
+                      color: AppThemes.unselectedColor,
+                      thickness: 1,
+                      indent: 10,
+                      endIndent: 10,
+                    )),
               ]),
             ),
             !isColored
@@ -271,10 +263,12 @@ class TicketView extends StatelessWidget {
                 //         height: 160,
                 //         child: CustomPaint(painter: TicketViewBorderPainter(color: Colors.black.withOpacity(.3))))
                 //     :
-                SizedBox(
-                    width: Dimensions.screenWidth * .85,
-                    height: 160,
-                    child: CustomPaint(painter: LargeTicketViewBorderPainter(color: Colors.black.withOpacity(.3))))
+                CustomPaint(
+                    painter: LargeTicketViewBorderPainter(
+                        height: 500,
+                        width: 350,
+                        circleHeight: Dimensions.height10 * 8,
+                        color: Colors.black.withOpacity(.3)))
                 : Container(),
           ]),
         ));

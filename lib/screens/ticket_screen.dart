@@ -31,7 +31,7 @@ class TicketScreen extends StatelessWidget {
                 ticket: ticketList[0],
                 isColored: false,
               ),
-            )
+            ),
           ],
         ),
       ]),
