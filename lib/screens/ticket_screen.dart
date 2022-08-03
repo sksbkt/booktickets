@@ -26,7 +26,7 @@ class TicketScreen extends StatelessWidget {
             TicketTabs(tab1Text: AppConstats.UPCOMING_TEXT, tab2Text: AppConstats.PREVIOUS_TEXT),
             Gap(Dimensions.getHeightRatio(25)),
             Container(
-              padding: EdgeInsets.only(left: Dimensions.width15),
+              // padding: EdgeInsets.only(left: Dimensions.width15),
               child: TicketView(
                 ticket: ticketList[0],
                 isColored: false,

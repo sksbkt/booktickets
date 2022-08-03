@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_themes.dart';
-import '../utilities/app_constants.dart';
 import '../utilities/dimensions.dart';
 
 class TicketTabs extends StatelessWidget {
@@ -24,12 +23,6 @@ class TicketTabs extends StatelessWidget {
         children: [
           //airline tickets
           Container(
-            child: Center(
-              child: Text(
-                tab1Text,
-                style: AppThemes.headLineStyle1.copyWith(fontSize: 16),
-              ),
-            ),
             padding: EdgeInsets.symmetric(vertical: Dimensions.getHeightRatio(7)),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -38,15 +31,15 @@ class TicketTabs extends StatelessWidget {
                   Dimensions.getBorderRatio(50),
                 ))),
             width: Dimensions.screenWidth * .44,
-          ),
-          //hotels
-          Container(
             child: Center(
               child: Text(
-                tab2Text,
+                tab1Text,
                 style: AppThemes.headLineStyle1.copyWith(fontSize: 16),
               ),
             ),
+          ),
+          //hotels
+          Container(
             padding: EdgeInsets.symmetric(vertical: Dimensions.getHeightRatio(7)),
             decoration: BoxDecoration(
                 color: Colors.transparent,
@@ -55,6 +48,12 @@ class TicketTabs extends StatelessWidget {
                   Dimensions.getBorderRatio(50),
                 ))),
             width: Dimensions.screenWidth * .44,
+            child: Center(
+              child: Text(
+                tab2Text,
+                style: AppThemes.headLineStyle1.copyWith(fontSize: 16),
+              ),
+            ),
           ),
         ],
       ),
