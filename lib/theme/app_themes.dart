@@ -12,11 +12,14 @@ class AppThemes {
 
   static const Color blueBtnColor = Color(0xd91130ce);
   static const Color containerBGColor = Color(0xbb3ab8b8);
+  static const Color container2BGColor = Color(0xfffaf9f9);
+  static const Color container3BGColor = Color(0xff616be8);
 
   static const Color objectBlueColor = Color(0xff8accf7);
 
   static const Color selectedColor = Color(0xff5b5d5b);
   static const Color unselectedColor = Color(0xffa6a6a6);
+  static const Color dividerColor = Color(0xfff1f1f1);
 
   static const Color backgroundColor = Color(0xffeeedf2);
   static const Color SearchBGColor = Color(0xfff4f6fd);
@@ -24,7 +27,8 @@ class AppThemes {
   static const Color orangeColor = Color(0xfff37b67);
   static const Color kakiColor = Color(0xffd3cfca);
   static const Color bgShapeColor = Color(0xff189999);
-  static const Color bgShapeColor2 = Color(0xffec6545);
+  static const Color bgShape2Color = Color(0xffec6545);
+  static const Color bgShape3Color = Color(0xff2f3ce8);
 
   static const Color shadowColor = Color(0xff989898);
 

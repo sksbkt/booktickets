@@ -24,11 +24,7 @@ class HeadLinkWidget extends StatelessWidget {
           style: AppThemes.headLineStyle2,
         ),
         InkWell(
-          onTap: () {
-            ///navigation is yet to be implemented
-            ///link
-            print('${link}');
-          },
+          onTap: () {},
           child: Text(
             linkText!,
             //we are using the previously declared style but changing it a bit inline

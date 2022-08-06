@@ -1,3 +1,4 @@
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:booktickets/theme/app_themes.dart';
 import 'package:booktickets/utilities/app_constants.dart';
 import 'package:booktickets/utilities/dimensions.dart';
@@ -220,110 +221,150 @@ class TicketView extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Divider(
-                        color: AppThemes.unselectedColor,
-                        thickness: 1,
-                        height: 1,
-                        indent: 10,
-                        endIndent: 10,
-                      ),
-                      Container(
-                        height: Dimensions.getHeightRatio(80),
-                        color: Colors.white,
-                        padding: EdgeInsets.all(Dimensions.width15),
-                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          AppColumnLayout(
-                            firstText: 'Flutter DB',
-                            SecondText: 'Passenger',
-                            isColored: isColored,
-                          ),
-                          AppColumnLayout(
-                            firstText: '5221 478566',
-                            SecondText: 'Passport',
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            isColored: isColored,
-                          ),
-                        ]),
-                      ),
-
-                      Stack(
-                        children: [
-                          Container(
-                            height: Dimensions.getHeightRatio(80),
-                            color: Colors.white,
-                            padding: EdgeInsets.all(Dimensions.width15),
-                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                              AppColumnLayout(
-                                firstText: '0055 444 77147',
-                                SecondText: 'Number of E-ticket',
-                                isColored: isColored,
-                                getSize: (s) {
-                                  print('Size: ${s.toString()}');
-                                },
-                              ),
-                              AppColumnLayout(
-                                firstText: 'B2SG28',
-                                SecondText: 'Booking code',
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                isColored: isColored,
-                              ),
-                            ]),
-                          ),
-                          AppLayoutBuilder(
-                            isColored: isColored,
-                            density: 10,
-                            top: 0,
-                          ),
-                        ],
-                      ),
-                      Stack(
-                        children: [
-                          Container(
-                            height: Dimensions.getHeightRatio(80),
-                            color: Colors.white,
-                            padding: EdgeInsets.all(Dimensions.width15),
-                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                              AppColumnLayout(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                firstWidget: Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/visa.png',
-                                        scale: 11,
-                                      ),
-                                      Gap(
-                                        Dimensions.getWidthRatio(10),
-                                      ),
-                                      Text(
-                                        '***2462',
-                                        style: AppThemes.headLineStyle3,
-                                      )
-                                    ],
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          if (!isColored)
+                            return Column(
+                              children: [
+                                const Divider(
+                                  color: AppThemes.dividerColor,
+                                  thickness: 1,
+                                  height: 1,
+                                  indent: 10,
+                                  endIndent: 10,
+                                ),
+                                Container(
+                                  height: Dimensions.getHeightRatio(80),
+                                  color: Colors.white,
+                                  padding: EdgeInsets.all(Dimensions.width15),
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                    AppColumnLayout(
+                                      firstText: 'Flutter DB',
+                                      SecondText: 'Passenger',
+                                      isColored: isColored,
+                                    ),
+                                    AppColumnLayout(
+                                      firstText: '5221 478566',
+                                      SecondText: 'Passport',
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      isColored: isColored,
+                                    ),
+                                  ]),
+                                ),
+                                Stack(
+                                  children: [
+                                    Container(
+                                      height: Dimensions.getHeightRatio(80),
+                                      color: Colors.white,
+                                      padding: EdgeInsets.all(Dimensions.width15),
+                                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                        AppColumnLayout(
+                                          firstText: '0055 444 77147',
+                                          SecondText: 'Number of E-ticket',
+                                          isColored: isColored,
+                                          getSize: (s) {
+                                            //for development purpose
+                                            // print('Size: ${s.toString()}');
+                                          },
+                                        ),
+                                        AppColumnLayout(
+                                          firstText: 'B2SG28',
+                                          SecondText: 'Booking code',
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          isColored: isColored,
+                                        ),
+                                      ]),
+                                    ),
+                                    AppLayoutBuilder(
+                                      isColored: isColored,
+                                      dotThickness: 1,
+                                      dotWidth: 1,
+                                      density: 10,
+                                      top: 0,
+                                    ),
+                                  ],
+                                ),
+                                Stack(
+                                  children: [
+                                    Container(
+                                      height: Dimensions.getHeightRatio(80),
+                                      color: Colors.white,
+                                      padding: EdgeInsets.all(Dimensions.width15),
+                                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                        AppColumnLayout(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          firstWidget: Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Image.asset(
+                                                  'assets/images/visa.png',
+                                                  scale: 11,
+                                                ),
+                                                Gap(
+                                                  Dimensions.getWidthRatio(10),
+                                                ),
+                                                Text(
+                                                  '***2462',
+                                                  style: AppThemes.headLineStyle3,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          SecondText: 'Payment method',
+                                          isColored: isColored,
+                                        ),
+                                        AppColumnLayout(
+                                          firstText: '\$249.99',
+                                          SecondText: 'Price',
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          isColored: isColored,
+                                        ),
+                                      ]),
+                                    ),
+                                    AppLayoutBuilder(
+                                      isColored: isColored,
+                                      dotThickness: 1,
+                                      dotWidth: 1,
+                                      density: 10,
+                                      top: 0,
+                                    ),
+                                  ],
+                                ),
+                                const Divider(
+                                  color: AppThemes.dividerColor,
+                                  thickness: 1,
+                                  height: 1,
+                                  indent: 10,
+                                  endIndent: 10,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(
+                                    left: Dimensions.width15,
+                                    right: Dimensions.width15,
+                                    top: Dimensions.width15,
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(Dimensions.radius15),
+                                        bottomRight: Radius.circular(Dimensions.radius15)),
+                                    child: BarcodeWidget(
+                                      data: 'https://github.com/martinovovo',
+                                      barcode: Barcode.code128(),
+                                      drawText: false,
+                                      color: AppThemes.textColor,
+                                      height: 70,
+                                      width: double.maxFinite,
+                                    ),
                                   ),
                                 ),
-                                SecondText: 'Payment method',
-                                isColored: isColored,
-                              ),
-                              AppColumnLayout(
-                                firstText: '\$249.99',
-                                SecondText: 'Price',
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                isColored: isColored,
-                              ),
-                            ]),
-                          ),
-                          AppLayoutBuilder(
-                            isColored: isColored,
-                            dotThickness: 2,
-                            dotWidth: 2,
-                            density: 20,
-                            top: 0,
-                          ),
-                        ],
-                      ),
+                              ],
+                            );
+                          else
+                            return Container();
+                        },
+                      )
                     ],
                   ),
                   // Cutting dots
@@ -354,8 +395,8 @@ class TicketView extends StatelessWidget {
                 //     :
                 CustomPaint(
                     painter: LargeTicketViewBorderPainter(
-                        height: 500,
-                        width: 350,
+                        height: Dimensions.getHeightRatio(500),
+                        width: Dimensions.getWidthRatio(350),
                         circleHeight: Dimensions.height10 * 8,
                         color: Colors.black.withOpacity(.3)))
                 : Container(),

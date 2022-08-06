@@ -15,6 +15,7 @@ class TicketScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(children: [
         ListView(
+          physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           padding: EdgeInsets.all(Dimensions.getHeightRatio(20)),
           children: [
             Gap(Dimensions.getHeightRatio(40)),
@@ -32,8 +33,42 @@ class TicketScreen extends StatelessWidget {
                 isColored: false,
               ),
             ),
+            Gap(Dimensions.getHeightRatio(25)),
+            Container(
+              // padding: EdgeInsets.only(left: Dimensions.width15),
+              child: TicketView(
+                ticket: ticketList[0],
+                isColored: true,
+              ),
+            ),
           ],
         ),
+        Positioned(
+          top: Dimensions.getHeightRatio(262),
+          left: Dimensions.getWidthRatio(21),
+          child: Container(
+            height: Dimensions.getHeightRatio(17),
+            width: Dimensions.getWidthRatio(17),
+            padding: EdgeInsets.all(2),
+            decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: AppThemes.textColor, width: 2)),
+            child: Container(
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+            ),
+          ),
+        ),
+        Positioned(
+          top: Dimensions.getHeightRatio(262),
+          right: Dimensions.getWidthRatio(21),
+          child: Container(
+            height: Dimensions.getHeightRatio(17),
+            width: Dimensions.getWidthRatio(17),
+            padding: EdgeInsets.all(2),
+            decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: AppThemes.textColor, width: 2)),
+            child: Container(
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+            ),
+          ),
+        )
       ]),
     );
   }

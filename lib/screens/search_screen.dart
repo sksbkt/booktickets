@@ -168,7 +168,7 @@ class SearchScreen extends StatelessWidget {
                           gradient: LinearGradient(
                               begin: FractionalOffset(1, 0),
                               end: FractionalOffset(.2, .8),
-                              colors: [AppThemes.bgShapeColor2.withOpacity(.7), AppThemes.bgShapeColor2]),
+                              colors: [AppThemes.bgShape2Color.withOpacity(.7), AppThemes.bgShape2Color]),
                           borderRadius: BorderRadius.circular(Dimensions.getBorderRatio(18))),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
